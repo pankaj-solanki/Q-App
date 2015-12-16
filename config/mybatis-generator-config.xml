@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+	<!-- Note that you have to specify the driver location here. The tool does 
+		not appear to use the Eclipse classpath or the project classpath -->
+	<classPathEntry
+		location="/Users/pankajsolanki1/.m2/repository/mysql/mysql-connector-java/5.1.37/mysql-connector-java-5.1.37.jar" />
+
+	<context id="context1" targetRuntime="MyBatis3">
+
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<!-- Where to pull the data from -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost/qapp?autoCommit=true" userId="root"
+			password="" />
+
+		<!-- Note that the targetProject refers to the name of the project in your 
+			Eclipse IDE (not the name of the Maven project). If run outside of the IDE 
+			you can specify a path instead, but there doesn't seem to be a nice way to 
+			specify a single path for both usage scenarios. -->
+
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- Generates the model (the objects that hold the data) -->
+		<javaModelGenerator targetPackage="com.qapp.model.generated"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="com.qapp.dao.generated"
+			targetProject="src/main/resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!-- Generates the interfaces used to retrieve data -->
+		<javaClientGenerator targetPackage="com.qapp.dao.generated"
+			targetProject="src/main/java" type="XMLMAPPER">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+
+		<!-- List of tables to inspect -->
+		<!-- <table schema="qapp" tableName="%">
+			<generatedKey column="id" sqlStatement="JDBC"/>
+		</table> -->
+		
+<!-- 		<table schema="qapp" tableName="answer" />
+		<table schema="qapp" tableName="answer_content" />
+		<table schema="qapp" tableName="content_type" />
+		<table schema="qapp" tableName="device" />
+		<table schema="qapp" tableName="distribution_list" />
+		<table schema="qapp" tableName="event" />
+		<table schema="qapp" tableName="event_entity_type" />
+		<table schema="qapp" tableName="friend_group" />
+		<table schema="qapp" tableName="friend_group_member" />
+		<table schema="qapp" tableName="friend_network" />
+		<table schema="qapp" tableName="question" />
+		<table schema="qapp" tableName="question_content" />
+		<table schema="qapp" tableName="question_sharing" />
+		<table schema="qapp" tableName="question_type" />
+		<table schema="qapp" tableName="sharing_entity_type" /> -->
+		<table schema="qapp" tableName="user">
+		<generatedKey column="id" sqlStatement="MySql" />
+		</table>
+<!-- 		<table schema="qapp" tableName="user_contact" />
+		<table schema="qapp" tableName="user_status" />
+ -->	</context>
+</generatorConfiguration>

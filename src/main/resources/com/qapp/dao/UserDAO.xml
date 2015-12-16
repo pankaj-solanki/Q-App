@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qapp.dao.UserDAO">
+
+
+	<select id="get" parameterType="map" resultType="String">
+		SELECT name FROM
+		user WHERE id=#{id};
+	</select>
+
+	<select id="getInstanceIdList" resultType="String">
+		SELECT instance_id FROM instance_info
+	</select>
+
+	<insert id="saveInstanceId" parameterType="map">
+		INSERT INTO
+		instance_info(instance_id) VALUES(#{instanceId})
+	</insert>
+</mapper>
