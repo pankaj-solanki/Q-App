@@ -1,8 +1,9 @@
 package com.qapp.model.generated;
 
+import com.qapp.model.ModelRootClass;
 import java.util.Date;
 
-public class User {
+public class User extends ModelRootClass {
   private Long id;
 
   private Long contact;

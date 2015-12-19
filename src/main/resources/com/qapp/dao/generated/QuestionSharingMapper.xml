@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qapp.dao.generated.QuestionSharingMapper" >
+  <resultMap id="BaseResultMap" type="com.qapp.model.generated.QuestionSharing" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="question_id" property="questionId" jdbcType="BIGINT" />
+    <result column="is_excluded" property="isExcluded" jdbcType="BIT" />
+    <result column="sharing_entity_type_id" property="sharingEntityTypeId" jdbcType="INTEGER" />
+    <result column="sharing_entity_id" property="sharingEntityId" jdbcType="BIGINT" />
+    <result column="is_public_sharing" property="isPublicSharing" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, question_id, is_excluded, sharing_entity_type_id, sharing_entity_id, is_public_sharing
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qapp.model.generated.QuestionSharingExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from question_sharing
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from question_sharing
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from question_sharing
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qapp.model.generated.QuestionSharingExample" >
+    delete from question_sharing
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qapp.model.generated.QuestionSharing" useGeneratedKeys="true" keyProperty="id" >
+    insert into question_sharing (question_id, is_excluded, sharing_entity_type_id, 
+      sharing_entity_id, is_public_sharing)
+    values (#{questionId,jdbcType=BIGINT}, #{isExcluded,jdbcType=BIT}, #{sharingEntityTypeId,jdbcType=INTEGER}, 
+      #{sharingEntityId,jdbcType=BIGINT}, #{isPublicSharing,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qapp.model.generated.QuestionSharing" useGeneratedKeys="true" keyProperty="id" >
+    insert into question_sharing
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="questionId != null" >
+        question_id,
+      </if>
+      <if test="isExcluded != null" >
+        is_excluded,
+      </if>
+      <if test="sharingEntityTypeId != null" >
+        sharing_entity_type_id,
+      </if>
+      <if test="sharingEntityId != null" >
+        sharing_entity_id,
+      </if>
+      <if test="isPublicSharing != null" >
+        is_public_sharing,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="questionId != null" >
+        #{questionId,jdbcType=BIGINT},
+      </if>
+      <if test="isExcluded != null" >
+        #{isExcluded,jdbcType=BIT},
+      </if>
+      <if test="sharingEntityTypeId != null" >
+        #{sharingEntityTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="sharingEntityId != null" >
+        #{sharingEntityId,jdbcType=BIGINT},
+      </if>
+      <if test="isPublicSharing != null" >
+        #{isPublicSharing,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qapp.model.generated.QuestionSharingExample" resultType="java.lang.Integer" >
+    select count(*) from question_sharing
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update question_sharing
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.questionId != null" >
+        question_id = #{record.questionId,jdbcType=BIGINT},
+      </if>
+      <if test="record.isExcluded != null" >
+        is_excluded = #{record.isExcluded,jdbcType=BIT},
+      </if>
+      <if test="record.sharingEntityTypeId != null" >
+        sharing_entity_type_id = #{record.sharingEntityTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sharingEntityId != null" >
+        sharing_entity_id = #{record.sharingEntityId,jdbcType=BIGINT},
+      </if>
+      <if test="record.isPublicSharing != null" >
+        is_public_sharing = #{record.isPublicSharing,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update question_sharing
+    set id = #{record.id,jdbcType=BIGINT},
+      question_id = #{record.questionId,jdbcType=BIGINT},
+      is_excluded = #{record.isExcluded,jdbcType=BIT},
+      sharing_entity_type_id = #{record.sharingEntityTypeId,jdbcType=INTEGER},
+      sharing_entity_id = #{record.sharingEntityId,jdbcType=BIGINT},
+      is_public_sharing = #{record.isPublicSharing,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qapp.model.generated.QuestionSharing" >
+    update question_sharing
+    <set >
+      <if test="questionId != null" >
+        question_id = #{questionId,jdbcType=BIGINT},
+      </if>
+      <if test="isExcluded != null" >
+        is_excluded = #{isExcluded,jdbcType=BIT},
+      </if>
+      <if test="sharingEntityTypeId != null" >
+        sharing_entity_type_id = #{sharingEntityTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="sharingEntityId != null" >
+        sharing_entity_id = #{sharingEntityId,jdbcType=BIGINT},
+      </if>
+      <if test="isPublicSharing != null" >
+        is_public_sharing = #{isPublicSharing,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qapp.model.generated.QuestionSharing" >
+    update question_sharing
+    set question_id = #{questionId,jdbcType=BIGINT},
+      is_excluded = #{isExcluded,jdbcType=BIT},
+      sharing_entity_type_id = #{sharingEntityTypeId,jdbcType=INTEGER},
+      sharing_entity_id = #{sharingEntityId,jdbcType=BIGINT},
+      is_public_sharing = #{isPublicSharing,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -8,6 +8,11 @@
 		location="/Users/pankajsolanki1/.m2/repository/mysql/mysql-connector-java/5.1.37/mysql-connector-java-5.1.37.jar" />
 
 	<context id="context1" targetRuntime="MyBatis3">
+		<!-- <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" 
+			/> <plugin type="org.mybatis.generator.plugins.SerializablePlugin" /> <plugin 
+			type="com.mybatis.generator.plugins.ExampleClassRoot"> <property name="exampleRootClass" 
+			value="com.qapp.model.ByExampleRootClass" /> </plugin> -->
+
 
 		<commentGenerator>
 			<property name="suppressAllComments" value="true" />
@@ -33,6 +38,7 @@
 			targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
+			<property name="rootClass" value="com.qapp.model.ModelRootClass" />
 		</javaModelGenerator>
 
 		<sqlMapGenerator targetPackage="com.qapp.dao.generated"
@@ -44,33 +50,47 @@
 		<javaClientGenerator targetPackage="com.qapp.dao.generated"
 			targetProject="src/main/java" type="XMLMAPPER">
 			<property name="enableSubPackages" value="true" />
+			<property name="rootInterface" value="com.qapp.dao.MapperRootInterface" />
 		</javaClientGenerator>
 
-
 		<!-- List of tables to inspect -->
-		<!-- <table schema="qapp" tableName="%">
-			<generatedKey column="id" sqlStatement="JDBC"/>
-		</table> -->
-		
-<!-- 		<table schema="qapp" tableName="answer" />
+
+		<table schema="qapp" tableName="answer">
+			<generatedKey column="id" sqlStatement="JDBC" />
+		</table>
 		<table schema="qapp" tableName="answer_content" />
 		<table schema="qapp" tableName="content_type" />
 		<table schema="qapp" tableName="device" />
-		<table schema="qapp" tableName="distribution_list" />
-		<table schema="qapp" tableName="event" />
-		<table schema="qapp" tableName="event_entity_type" />
-		<table schema="qapp" tableName="friend_group" />
-		<table schema="qapp" tableName="friend_group_member" />
-		<table schema="qapp" tableName="friend_network" />
-		<table schema="qapp" tableName="question" />
-		<table schema="qapp" tableName="question_content" />
-		<table schema="qapp" tableName="question_sharing" />
-		<table schema="qapp" tableName="question_type" />
-		<table schema="qapp" tableName="sharing_entity_type" /> -->
-		<table schema="qapp" tableName="user">
-		<generatedKey column="id" sqlStatement="MySql" />
+		<table schema="qapp" tableName="distribution_list">
+			<generatedKey column="id" sqlStatement="JDBC" />
 		</table>
-<!-- 		<table schema="qapp" tableName="user_contact" />
+		<table schema="qapp" tableName="event">
+			<generatedKey column="id" sqlStatement="JDBC" />
+		</table>
+		<table schema="qapp" tableName="event_entity_type" />
+		<table schema="qapp" tableName="friend_group">
+			<generatedKey column="id" sqlStatement="JDBC" />
+		</table>
+		<table schema="qapp" tableName="friend_group_member" />
+		<table schema="qapp" tableName="friend_network">
+			<generatedKey column="id" sqlStatement="JDBC" />
+		</table>
+		<table schema="qapp" tableName="question">
+			<generatedKey column="id" sqlStatement="JDBC" />
+		</table>
+		<table schema="qapp" tableName="question_content" />
+		<table schema="qapp" tableName="question_sharing">
+			<generatedKey column="id" sqlStatement="JDBC" />
+		</table>
+		<table schema="qapp" tableName="question_type" />
+		<table schema="qapp" tableName="sharing_entity_type" />
+		<table schema="qapp" tableName="user">
+			<generatedKey column="id" sqlStatement="JDBC" />
+		</table>
+		<table schema="qapp" tableName="user_contact">
+			<generatedKey column="id" sqlStatement="JDBC" />
+		</table>
 		<table schema="qapp" tableName="user_status" />
- -->	</context>
+
+	</context>
 </generatorConfiguration>

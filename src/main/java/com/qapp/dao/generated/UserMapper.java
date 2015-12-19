@@ -1,11 +1,12 @@
 package com.qapp.dao.generated;
 
+import com.qapp.dao.MapperRootInterface;
 import com.qapp.model.generated.User;
 import com.qapp.model.generated.UserExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-public interface UserMapper {
+public interface UserMapper extends MapperRootInterface {
   int countByExample(UserExample example);
 
   int deleteByExample(UserExample example);

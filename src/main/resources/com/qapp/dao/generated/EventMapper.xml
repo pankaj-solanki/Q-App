@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qapp.dao.generated.EventMapper" >
+  <resultMap id="BaseResultMap" type="com.qapp.model.generated.Event" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="event_entity_type_id" property="eventEntityTypeId" jdbcType="INTEGER" />
+    <result column="event_entity_id" property="eventEntityId" jdbcType="BIGINT" />
+    <result column="sharing_entity_type_id" property="sharingEntityTypeId" jdbcType="INTEGER" />
+    <result column="sharing_entity_id" property="sharingEntityId" jdbcType="BIGINT" />
+    <result column="creation_time" property="creationTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, event_entity_type_id, event_entity_id, sharing_entity_type_id, sharing_entity_id, 
+    creation_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qapp.model.generated.EventExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from event
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from event
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from event
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qapp.model.generated.EventExample" >
+    delete from event
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qapp.model.generated.Event" useGeneratedKeys="true" keyProperty="id" >
+    insert into event (event_entity_type_id, event_entity_id, 
+      sharing_entity_type_id, sharing_entity_id, creation_time
+      )
+    values (#{eventEntityTypeId,jdbcType=INTEGER}, #{eventEntityId,jdbcType=BIGINT}, 
+      #{sharingEntityTypeId,jdbcType=INTEGER}, #{sharingEntityId,jdbcType=BIGINT}, #{creationTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qapp.model.generated.Event" useGeneratedKeys="true" keyProperty="id" >
+    insert into event
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="eventEntityTypeId != null" >
+        event_entity_type_id,
+      </if>
+      <if test="eventEntityId != null" >
+        event_entity_id,
+      </if>
+      <if test="sharingEntityTypeId != null" >
+        sharing_entity_type_id,
+      </if>
+      <if test="sharingEntityId != null" >
+        sharing_entity_id,
+      </if>
+      <if test="creationTime != null" >
+        creation_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="eventEntityTypeId != null" >
+        #{eventEntityTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="eventEntityId != null" >
+        #{eventEntityId,jdbcType=BIGINT},
+      </if>
+      <if test="sharingEntityTypeId != null" >
+        #{sharingEntityTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="sharingEntityId != null" >
+        #{sharingEntityId,jdbcType=BIGINT},
+      </if>
+      <if test="creationTime != null" >
+        #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qapp.model.generated.EventExample" resultType="java.lang.Integer" >
+    select count(*) from event
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update event
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.eventEntityTypeId != null" >
+        event_entity_type_id = #{record.eventEntityTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.eventEntityId != null" >
+        event_entity_id = #{record.eventEntityId,jdbcType=BIGINT},
+      </if>
+      <if test="record.sharingEntityTypeId != null" >
+        sharing_entity_type_id = #{record.sharingEntityTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sharingEntityId != null" >
+        sharing_entity_id = #{record.sharingEntityId,jdbcType=BIGINT},
+      </if>
+      <if test="record.creationTime != null" >
+        creation_time = #{record.creationTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update event
+    set id = #{record.id,jdbcType=BIGINT},
+      event_entity_type_id = #{record.eventEntityTypeId,jdbcType=INTEGER},
+      event_entity_id = #{record.eventEntityId,jdbcType=BIGINT},
+      sharing_entity_type_id = #{record.sharingEntityTypeId,jdbcType=INTEGER},
+      sharing_entity_id = #{record.sharingEntityId,jdbcType=BIGINT},
+      creation_time = #{record.creationTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qapp.model.generated.Event" >
+    update event
+    <set >
+      <if test="eventEntityTypeId != null" >
+        event_entity_type_id = #{eventEntityTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="eventEntityId != null" >
+        event_entity_id = #{eventEntityId,jdbcType=BIGINT},
+      </if>
+      <if test="sharingEntityTypeId != null" >
+        sharing_entity_type_id = #{sharingEntityTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="sharingEntityId != null" >
+        sharing_entity_id = #{sharingEntityId,jdbcType=BIGINT},
+      </if>
+      <if test="creationTime != null" >
+        creation_time = #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qapp.model.generated.Event" >
+    update event
+    set event_entity_type_id = #{eventEntityTypeId,jdbcType=INTEGER},
+      event_entity_id = #{eventEntityId,jdbcType=BIGINT},
+      sharing_entity_type_id = #{sharingEntityTypeId,jdbcType=INTEGER},
+      sharing_entity_id = #{sharingEntityId,jdbcType=BIGINT},
+      creation_time = #{creationTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

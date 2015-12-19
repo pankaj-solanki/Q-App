@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qapp.dao.generated.DeviceMapper" >
+  <resultMap id="BaseResultMap" type="com.qapp.model.generated.Device" >
+    <id column="imei" property="imei" jdbcType="BIGINT" />
+    <result column="serial" property="serial" jdbcType="VARCHAR" />
+    <result column="mac" property="mac" jdbcType="VARCHAR" />
+    <result column="device_type_id" property="deviceTypeId" jdbcType="VARCHAR" />
+    <result column="os_id" property="osId" jdbcType="VARCHAR" />
+    <result column="major_version" property="majorVersion" jdbcType="VARCHAR" />
+    <result column="minor_version" property="minorVersion" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    imei, serial, mac, device_type_id, os_id, major_version, minor_version
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qapp.model.generated.DeviceExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from device
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from device
+    where imei = #{imei,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from device
+    where imei = #{imei,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qapp.model.generated.DeviceExample" >
+    delete from device
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qapp.model.generated.Device" >
+    insert into device (imei, serial, mac, 
+      device_type_id, os_id, major_version, 
+      minor_version)
+    values (#{imei,jdbcType=BIGINT}, #{serial,jdbcType=VARCHAR}, #{mac,jdbcType=VARCHAR}, 
+      #{deviceTypeId,jdbcType=VARCHAR}, #{osId,jdbcType=VARCHAR}, #{majorVersion,jdbcType=VARCHAR}, 
+      #{minorVersion,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qapp.model.generated.Device" >
+    insert into device
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="imei != null" >
+        imei,
+      </if>
+      <if test="serial != null" >
+        serial,
+      </if>
+      <if test="mac != null" >
+        mac,
+      </if>
+      <if test="deviceTypeId != null" >
+        device_type_id,
+      </if>
+      <if test="osId != null" >
+        os_id,
+      </if>
+      <if test="majorVersion != null" >
+        major_version,
+      </if>
+      <if test="minorVersion != null" >
+        minor_version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="imei != null" >
+        #{imei,jdbcType=BIGINT},
+      </if>
+      <if test="serial != null" >
+        #{serial,jdbcType=VARCHAR},
+      </if>
+      <if test="mac != null" >
+        #{mac,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceTypeId != null" >
+        #{deviceTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="osId != null" >
+        #{osId,jdbcType=VARCHAR},
+      </if>
+      <if test="majorVersion != null" >
+        #{majorVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="minorVersion != null" >
+        #{minorVersion,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qapp.model.generated.DeviceExample" resultType="java.lang.Integer" >
+    select count(*) from device
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update device
+    <set >
+      <if test="record.imei != null" >
+        imei = #{record.imei,jdbcType=BIGINT},
+      </if>
+      <if test="record.serial != null" >
+        serial = #{record.serial,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mac != null" >
+        mac = #{record.mac,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceTypeId != null" >
+        device_type_id = #{record.deviceTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.osId != null" >
+        os_id = #{record.osId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.majorVersion != null" >
+        major_version = #{record.majorVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.minorVersion != null" >
+        minor_version = #{record.minorVersion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update device
+    set imei = #{record.imei,jdbcType=BIGINT},
+      serial = #{record.serial,jdbcType=VARCHAR},
+      mac = #{record.mac,jdbcType=VARCHAR},
+      device_type_id = #{record.deviceTypeId,jdbcType=VARCHAR},
+      os_id = #{record.osId,jdbcType=VARCHAR},
+      major_version = #{record.majorVersion,jdbcType=VARCHAR},
+      minor_version = #{record.minorVersion,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qapp.model.generated.Device" >
+    update device
+    <set >
+      <if test="serial != null" >
+        serial = #{serial,jdbcType=VARCHAR},
+      </if>
+      <if test="mac != null" >
+        mac = #{mac,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceTypeId != null" >
+        device_type_id = #{deviceTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="osId != null" >
+        os_id = #{osId,jdbcType=VARCHAR},
+      </if>
+      <if test="majorVersion != null" >
+        major_version = #{majorVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="minorVersion != null" >
+        minor_version = #{minorVersion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where imei = #{imei,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qapp.model.generated.Device" >
+    update device
+    set serial = #{serial,jdbcType=VARCHAR},
+      mac = #{mac,jdbcType=VARCHAR},
+      device_type_id = #{deviceTypeId,jdbcType=VARCHAR},
+      os_id = #{osId,jdbcType=VARCHAR},
+      major_version = #{majorVersion,jdbcType=VARCHAR},
+      minor_version = #{minorVersion,jdbcType=VARCHAR}
+    where imei = #{imei,jdbcType=BIGINT}
+  </update>
+</mapper>

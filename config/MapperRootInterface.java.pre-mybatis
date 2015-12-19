@@ -1,0 +1,11 @@
+/**
+ * 
+ */
+package com.qapp.dao;
+
+/**
+ * @author Pankaj Solanki The MapperRootInterface makes generic service
+ *         implementations feasible.
+ */
+public interface MapperRootInterface {
+}
